@@ -7,13 +7,19 @@ import { RouterState } from './shared/router.state';
 import { AppState } from './shared/app.state';
 import { OrderService } from './order.service';
 import { FormsModule } from '@angular/forms';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    NgxsModule.forRoot([RouterState, AppState]),
     FormsModule,
+    NgxsModule.forRoot([RouterState, AppState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [OrderService],
   bootstrap: [AppComponent],

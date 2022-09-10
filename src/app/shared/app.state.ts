@@ -22,7 +22,7 @@ export interface AppStateModel {
     orderId: Math.floor(Math.random() * 23000),
   },
 })
-@Injectable()
+@Injectable() // since we are using Ivy @Injectable is required
 export class AppState {
   constructor(private orderService: OrderService) {}
 
@@ -46,7 +46,7 @@ export class AppState {
     return this.orderService
       .post()
       .pipe(
-        tap((success) =>
+        tap((success: boolean) =>
           success
             ? stateContext.dispatch(OrderSuccess)
             : stateContext.dispatch(OrderFailed)

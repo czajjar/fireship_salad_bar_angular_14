@@ -14,8 +14,8 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   //Selects state named 'app' automagically by parsing 'app$' class member name.
   @Select(AppState) app$: Observable<AppStateModel> | undefined;
-  // Examples below of how it can be done differently
-  // @Select((state: any) => state.app) app$: | Observable<AppStateModel> | undefined;
+  // Examples of how it can be done differently using static 'app' @Selector defined in AppState
+  // @Select((state) => state.app) app$: | Observable<AppStateModel> | undefined;
   // or
   // @Select(AppState.app) app$: Observable<AppStateModel> | undefined;
 
