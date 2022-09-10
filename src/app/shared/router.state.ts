@@ -8,7 +8,10 @@ export class Navigate {
   constructor(public payload: string) {}
 }
 
-@State<string>({ name: 'router', defaults: '' })
+@State<string>({
+  name: 'router',
+  defaults: '',
+})
 @Injectable() // since we are using Ivy @Injectable is required
 export class RouterState {
   constructor(private router: Router) {}
