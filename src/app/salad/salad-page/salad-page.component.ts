@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { StartOver } from '../salad.actions';
+import { SaladState, SaladStateModel } from '../salad.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-salad-page',
   templateUrl: './salad-page.component.html',
-  styleUrls: ['./salad-page.component.css']
+  styleUrls: ['./salad-page.component.css'],
 })
-export class SaladPageComponent implements OnInit {
+export class SaladPageComponent {
+  constructor(private store: Store) {}
 
-  constructor() { }
+  @Select() salad$: Observable<SaladStateModel> | undefined;
 
-  ngOnInit(): void {
+  @Select(SaladState.price) price$: Observable<number> | undefined;
+  @Select(SaladState.getDressing) dressing$: Observable<string> | undefined;
+  @Select(SaladState.toppings) toppings$: Observable<string[]> | undefined;
+
+  startOver() {
+    this.store.dispatch(new StartOver());
   }
-
 }
