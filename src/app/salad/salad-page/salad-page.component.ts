@@ -16,7 +16,6 @@ export class SaladPageComponent {
 
   @Select(SaladState.price) price$: Observable<number> | undefined;
   @Select(SaladState.getDressing) dressing$: Observable<string> | undefined;
-  @Select(SaladState.toppings) toppings$: Observable<string[]> | undefined;
 
   startOver() {
     this.store.dispatch(new StartOver());

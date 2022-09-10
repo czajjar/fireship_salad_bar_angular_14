@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { StartOver } from './salad.actions';
+import { AddTopping, RemoveLastTopping, StartOver } from './salad.actions';
 export interface SaladStateModel {
   dressing: string;
   price: number;
@@ -32,6 +32,37 @@ export class SaladState {
     return state.toppings;
   }
 
+  @Selector()
+  static lastAddedTopping(state: SaladStateModel) {
+    return state.toppings[state.toppings.length - 1];
+  }
+
+  @Action(AddTopping)
+  addTopping(context: StateContext<SaladStateModel>, action: AddTopping) {
+    const current = context.getState();
+
+    const toppings = [...current.toppings, action.payload];
+    context.patchState({
+      toppings,
+      price: current.price + 0.5,
+    });
+  }
+
+  @Action(RemoveLastTopping)
+  removeLastTopping(context: StateContext<SaladStateModel>) {
+    const current = context.getState();
+    let currentToppings = current.toppings;
+    if (currentToppings.length > 1) {
+      currentToppings.splice(-1, 1);
+    } else {
+      currentToppings = [];
+    }
+    context.setState({
+      toppings: currentToppings,
+      price: current.price - 0.5,
+      dressing: current.dressing,
+    });
+  }
   @Action(StartOver)
   reset({ setState }: StateContext<SaladStateModel>) {
     setState({ ...defaults });
