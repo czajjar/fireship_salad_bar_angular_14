@@ -1,11 +1,12 @@
-<ng-container *ngIf="toppings$ | async as selected">
-
-  <div *ngFor="let choice of choices">
-    <button class="btn btn-outline-info" *ngIf="!(selected.includes(choice))" (click)="add(choice)">
-      Add {{ choice }}</button>
+<div class="container" *ngIf="toppings$ | async as selected">
+  <div class="column">
+    <div *ngFor="let choice of choices">
+      <button class="btn btn-outline-info" *ngIf="!(selected.includes(choice))" (click)="add(choice)">
+        Add {{ choice }}</button>
+    </div>
   </div>
-
-  <button class="btn btn-outline-info" *ngIf="(selected.length > 0 )" (click)="removeLast()">
-    Remove {{ lastAddedTopping$ | async }}</button>
-
-</ng-container>
+  <div class="column">
+    <button class="btn btn-outline-info" *ngIf="(selected.length > 0 )" (click)="removeLast()">
+      Remove {{ lastAddedTopping$ | async }}</button>
+  </div>
+</div>

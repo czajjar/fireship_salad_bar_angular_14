@@ -1,1 +1,11 @@
-.btn { margin-bottom: 10px; }
+.btn {
+  margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
