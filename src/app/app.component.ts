@@ -24,7 +24,6 @@ export class AppComponent {
   constructor(private store: Store) {}
 
   clickHandler(username: string) {
-    console.log(username);
     this.store.dispatch([
       new SetUsername(username),
       new Navigate('salad/order'),
@@ -33,9 +32,5 @@ export class AppComponent {
 
   confirm() {
     this.store.dispatch(ConfirmOrder);
-  }
-
-  logState(state: any) {
-    console.log(state);
   }
 }

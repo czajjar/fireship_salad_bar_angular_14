@@ -58,7 +58,7 @@ export class SaladState {
       currentToppings = [];
     }
     context.setState({
-      toppings: currentToppings,
+      toppings: [...currentToppings],
       price: current.price - 0.5,
       dressing: current.dressing,
     });
